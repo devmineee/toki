@@ -19,7 +19,7 @@ export default defineConfig({
       '/ws/room':{
         target:'wss://api1:443',
         ws:true,
-        secure:true,
+        secure:false,
         changeOrigin:true,
       }
     }
