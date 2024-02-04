@@ -2,6 +2,7 @@ import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import fs from 'fs'
 
 export default defineConfig({
   plugins: [
@@ -14,14 +15,18 @@ export default defineConfig({
   },
   server:{
     //hmr:false,
-    cors:"*",
-    // proxy:{
-    //   '/ws/room':{
-    //     target:'wss://api1:443',
-    //     ws:true,
-    //     secure:false,
-    //     changeOrigin:true,
-    //   }
-    // }
+    cors: "*",
+    https: {
+      key: fs.readFileSync('./key/rtctest2.pem'),
+      cert: fs.readFileSync('./key/rtccert.pem'),
+      handshakeTimeout: 300000,
+    },
+    proxy:{
+      '/ws/room':{
+        target:'https://localhost:8081',
+        ws:true,
+        changeOrigin:true,
+      }
+    }
   }
 })

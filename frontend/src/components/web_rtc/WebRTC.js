@@ -13,6 +13,7 @@ const ws8 = new WebSocket(`wss://onlineb205taskspace.ddns.net/ws/room`);
 // const ws9 = new WebSocket(`ws://onlineb205taskspace.ddns.net/ws/room`);
 // const ws10 = new WebSocket(`ws://localhost:41417/ws/room`);
 const ws11 = new WebSocket(`wss://localhost:443/ws/room`);
+const ws12 = new WebSocket(`wss://localhost:39721/ws/room`);
 var name;
 
 window.onbeforeunload = function() {
