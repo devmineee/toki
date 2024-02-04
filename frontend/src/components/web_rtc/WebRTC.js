@@ -1,6 +1,6 @@
 import kurentoUtils from 'kurento-utils'
 const {VITE_BACKEND_WEBSOCKETURL}=import.meta.env;
-// const ws = new WebSocket(`wss://api1/ws/room`);
+const ws = new WebSocket(`wss://api1/ws/room`);
 const ws7 = new WebSocket(`wss://web1/ws/room`);
 var participants = {};
 // const ws2 = new WebSocket(`ws://api1:41417/ws/room`);
