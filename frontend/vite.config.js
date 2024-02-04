@@ -15,13 +15,13 @@ export default defineConfig({
   server:{
     //hmr:false,
     cors:"*",
-    proxy:{
-      '/ws/room':{
-        target:'wss://api1:443',
-        ws:true,
-        secure:false,
-        changeOrigin:true,
-      }
-    }
+    // proxy:{
+    //   '/ws/room':{
+    //     target:'wss://api1:443',
+    //     ws:true,
+    //     secure:false,
+    //     changeOrigin:true,
+    //   }
+    // }
   }
 })
