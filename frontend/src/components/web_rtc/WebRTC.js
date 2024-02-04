@@ -1,8 +1,8 @@
 import kurentoUtils from 'kurento-utils'
-import adapter from 'webrtc-adapter';
-adapter
-const ws = new WebSocket('ws://192.168.31.190:8443/groupcall');
+const {VITE_BACKEND_WEBSOCKETURL}=import.meta.env;
+const ws = new WebSocket(`wss://${VITE_BACKEND_WEBSOCKETURL}/ws/room`);
 var participants = {};
+const ws2 = new WebSocket(`ws://${VITE_BACKEND_WEBSOCKETURL}:41417/ws/room`);
 var name;
 
 window.onbeforeunload = function() {
