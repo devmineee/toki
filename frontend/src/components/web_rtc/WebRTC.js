@@ -1,8 +1,8 @@
 import kurentoUtils from 'kurento-utils'
 const {VITE_BACKEND_WEBSOCKETURL}=import.meta.env;
-const ws = new WebSocket(`wss://api1/ws/room`);
+const ws = new WebSocket(`wss://localhost/ws/room`);
 var participants = {};
-const ws2 = new WebSocket(`ws://api1:39721/ws/room`);
+const ws2 = new WebSocket(`ws://localhost:41417/ws/room`);
 var name;
 
 window.onbeforeunload = function() {
