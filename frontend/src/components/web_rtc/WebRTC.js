@@ -1,16 +1,16 @@
 import kurentoUtils from 'kurento-utils'
 const {VITE_BACKEND_WEBSOCKETURL}=import.meta.env;
-const ws = new WebSocket(`wss://api1/ws/room`);
-const ws7 = new WebSocket(`wss://web1/ws/room`);
+// const ws = new WebSocket(`wss://api1/ws/room`);
+// const ws7 = new WebSocket(`wss://web1/ws/room`);
 var participants = {};
 const ws2 = new WebSocket(`ws://api1:41417/ws/room`);
 const ws3 = new WebSocket(`ws://api1:39721/ws/room`);
 
 const ws4 = new WebSocket(`ws://web1:80/ws/room`);
-const ws5 = new WebSocket(`ws://npm:3333/ws/room`);
-const ws6 = new WebSocket(`wss://npm:443/ws/room`);
-const ws8 = new WebSocket(`wss://onlineb205.p.ssafy.io/ws/room`);
-const ws9 = new WebSocket(`ws://onlineb205.p.ssafy.io/ws/room`);
+// const ws5 = new WebSocket(`ws://npm:3333/ws/room`);
+// const ws6 = new WebSocket(`wss://npm:443/ws/room`);
+const ws8 = new WebSocket(`wss://onlineb205taskspace.ddns.net/ws/room`);
+const ws9 = new WebSocket(`ws://onlineb205taskspace.ddns.net/ws/room`);
 const ws10 = new WebSocket(`ws://localhost:41417/ws/room`);
 const ws11 = new WebSocket(`wss://localhost:443/ws/room`);
 var name;
