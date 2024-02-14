@@ -107,6 +107,6 @@ public class User {
 		this.hexUserTag = hexUserTag;
 		this.userTag = ConvertUserTag.convertUserTag(hexUserTag);
 	}
-	@ManyToMany
-	private List<Badge> badges=new ArrayList<>();
+//	@ManyToMany
+//	private List<Badge> badges=new ArrayList<>();
 }
