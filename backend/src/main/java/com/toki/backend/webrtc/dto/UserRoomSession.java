@@ -43,7 +43,6 @@ public class UserRoomSession implements Closeable {
 
   private String name;
   private WebSocketSession session;
-  private KurentoClient kurento;
   private MediaPipeline pipeline;
 
   private String roomName;

@@ -9,6 +9,7 @@ public enum RoomChatType {
     COMMONCHAT,
     WHISPER,
     EXIT,
+    SYSTEM,
     UNKNOWN
 
 }

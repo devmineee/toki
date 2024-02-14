@@ -25,4 +25,14 @@ public class RoomChatController {
                 .resultMessage("채팅로그 응답")
                 .build());
     }
+    @PostMapping("/{roomPk}/game")
+    public ResponseEntity<CommonResponseDto<Object>> startGame(@PathVariable String roomPk){
+
+
+        return ResponseEntity.ok(CommonResponseDto.builder()
+                .data("")
+                .resultCode(200)
+                .resultMessage("게임요청 응답")
+                .build());
+    }
 }

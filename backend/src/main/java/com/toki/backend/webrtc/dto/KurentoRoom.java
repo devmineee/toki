@@ -23,6 +23,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.kurento.client.Continuation;
 import org.kurento.client.KurentoClient;
@@ -44,6 +45,7 @@ import java.util.concurrent.ConcurrentMap;
  */
 @Getter
 @Slf4j
+@Setter
 public class KurentoRoom implements Closeable {
 
 
@@ -54,7 +56,7 @@ public class KurentoRoom implements Closeable {
   private KurentoClient kurento;
   private String roomId;
   private String title;
-
+  private Boolean isPlayGame;
 
   @Builder
   public KurentoRoom(String roomName) {
@@ -67,6 +69,7 @@ public class KurentoRoom implements Closeable {
     this.kurento=kurento;
     this.roomId=roomId;
     this.title=title;
+    this.isPlayGame=false;
   }
 
   public void createPipline(){

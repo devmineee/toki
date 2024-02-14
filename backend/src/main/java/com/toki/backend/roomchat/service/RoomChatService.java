@@ -67,23 +67,46 @@ public class RoomChatService {
         log.debug("채팅 엔티티 {}",roomChatMessage.toString());
         roomChatMessageRepository.save(roomChatMessage);
         String topic = channelTopic.getTopic();
-        RoomChatResponseMessageDto roomChatResponseMessageDto = RoomChatResponseMessageDto.builder()
-                .roomChatPk(roomPk)
-                .fromUserNickName(userName)
-                .content(roomChatRequestDto.getContent())
-                .build();
 
-        log.debug("요청 주소 {}, 개체 {}",topic,roomChatResponseMessageDto);
-        if (roomChatRequestDto.getChatType() == RoomChatType.COMMONCHAT) {
-            // 그륩 채팅일 경우
+
+        switch (roomChatRequestDto.getChatType()) {
+            case ENTER -> {
+            }
+            case GAMECOMMAND -> {
+            }
+            case COMMONCHAT -> {
+            RoomChatResponseMessageDto roomChatResponseMessageDto = RoomChatResponseMessageDto.builder()
+                    .roomChatPk(roomPk)
+                    .fromUserNickName(userName)
+                    .content(roomChatRequestDto.getContent())
+                    .build();
             sendCommonChat(topic,roomChatResponseMessageDto);
+                }
+            case WHISPER -> {
+            }
+            case EXIT -> {
+            }
+            case SYSTEM -> {
+                RoomChatResponseMessageDto roomChatResponseMessageDto = RoomChatResponseMessageDto.builder()
+                        .roomChatPk(roomPk)
+                        .fromUserNickName(userName)
+                        .content(roomChatRequestDto.getContent())
+                        .build();
+                sendCommonChat(topic,roomChatResponseMessageDto);
+            }
+            case UNKNOWN -> {
+            }
         }
         if(roomChatMessage.getRoomChatIdx()>80){
         deleteAndUpdateRoomChatLog(roomPk);
         }
     }
 
+
     public void sendCommonChat(String topic, RoomChatResponseMessageDto roomChatResponseMessageDto) throws JsonProcessingException {
+        redisTemplate.convertAndSend(topic, objectMapper.writeValueAsString(roomChatResponseMessageDto));
+    }
+    public void sendSystemChat(String topic, RoomChatResponseMessageDto roomChatResponseMessageDto) throws JsonProcessingException {
         redisTemplate.convertAndSend(topic, objectMapper.writeValueAsString(roomChatResponseMessageDto));
     }
     public List<RoomChatMessage> getLastRoomChatMessage(String roomPk) {
@@ -104,7 +127,7 @@ public class RoomChatService {
         }
         return roomChatMessageList;
     }
-    @Transactional(readOnly = true)
+
     public void deleteAndUpdateRoomChatLog(String roomChatPk) throws JsonProcessingException {
 
         List<RoomChatMessage> roomChatList=roomChatMessageRepository.findAllByRoomChatPk(roomChatPk);
