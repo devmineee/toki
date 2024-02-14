@@ -67,9 +67,9 @@ public class User {
 	user 엔티티의 pk는 userPk이기 때문에
 	 */
 	//User와 Badge를 연결하기 위함.
-	@ManyToMany(fetch = FetchType.LAZY) //@ManyToMany: 다대다 관계를 정의하는 어노테이션
+	@ManyToMany(fetch = FetchType.EAGER) //@ManyToMany: 다대다 관계를 정의하는 어노테이션
 	@JoinTable(name = "member_badge", //@JoinTable: 연결 테이블을 지정 //user_badges : 연결테이블의 이름(다대다)
-			joinColumns = @JoinColumn(name = "users"),// 현재 엔티티의 외래 키 컬럼명 지정
+			joinColumns = @JoinColumn(name = "user_pk"),// 현재 엔티티의 외래 키 컬럼명 지정
 			inverseJoinColumns = @JoinColumn(name = "idx"))// 대상 엔티티의 외래 키 컬럼명 지정
 	//유저 테이블의 유저태그를 가져와서 배지테이블의 배지 인덱스와 연결
 	private List<Badge> badges = new ArrayList<>(); //배지들을 반환한다.
