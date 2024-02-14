@@ -28,26 +28,26 @@ public class UserService {
 
     //상세조회? : 닉네임, 유저태그, sns타입, 생성일자, 프로필 이미지 URL, 자기소개, 배지 (7개)
 
-    public UserDTO getUserDetailInfo(int userTag) {
+    public UserDTO getUserDetailInfo(String  userTag) {
         // userTag로 회원 정보 조회
-        User user =  userRepository.findByUserTag(userTag)
+        User user =  userRepository.findByUserTag(ConvertUserTag.convertUserTag(userTag))
                 .orElseThrow(() -> new EntityNotFoundException("해당하는 회원이 없습니다 : " + userTag));
 
         // 배지 정보 가져오기 -> 배지인덱스, 이름, 이미지URL을 반환.
-        List<BadgeDTO> badges = badgeService.getBadgesByUserTag(userTag);
+        List<BadgeDTO> badges = badgeService.getBadgesByUserTag(ConvertUserTag.convertUserTag(userTag));
 
         // Member 엔티티를 MemberDTO로 변환
         return convertEntityToDTO(user, badges);
     }
 
     // 유저 정보 간단 조회(닉네임, 고유번호, 프로필 사진)
-    public UserDTO getUserSimpleInfo(int userTag) {
+    public UserDTO getUserSimpleInfo(String userTag) {
         // userTag로 회원 정보 조회
-        User user = userRepository.findByUserTag(userTag)
+        User user = userRepository.findByUserTag(ConvertUserTag.convertUserTag(userTag)) //수정한 곳
                 .orElseThrow(() -> new EntityNotFoundException("UserTag에 해당하는 회원이 없습니다 :" + userTag));
 
         // 배지 정보 가져오기 -> 배지인덱스, 이름, 이미지URL을 반환.
-        List<BadgeDTO> badges = badgeService.getBadgesByUserTag(userTag);
+        List<BadgeDTO> badges = badgeService.getBadgesByUserTag(ConvertUserTag.convertUserTag(userTag)); //수정한 곳
 
         // Member 엔티티를 MemberDTO로 변환
         return convertEntityToSimpleDTO(user);
@@ -67,7 +67,7 @@ public class UserService {
                 .userRole(String.valueOf(user.getUserRole())) //오류 발생하여 valueOf로 감쌌습니다.
                 .userNickName(user.getUserNickName())
                 .userTag(user.getUserTag())
-                .selfInfo(user.getSelfInfo()) // 자기소개 정보 추가
+//                .selfInfo(user.getSelfInfo()) // 자기소개 정보 추가
                 .build();
     }
 
@@ -94,7 +94,7 @@ public class UserService {
                 .snsType(user.getSnsType())
                 .profileImageUrl(user.getProfileImageUrl())
                 .birthYear(user.getBirthYear())
-                .selfInfo(user.getSelfInfo()) // 자기소개 정보 추가
+//                .selfInfo(user.getSelfInfo()) // 자기소개 정보 추가 //2월15일 : 자기소개 부분은 사용하지 않음.(주석처리하였습니다.)
                 .badges(badges) // 배지 정보 추가
                 .build();
     }

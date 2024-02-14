@@ -1,6 +1,7 @@
 package com.toki.backend.member;
 
 import com.toki.backend.common.dto.response.CommonResponseDto;
+import com.toki.backend.common.utils.ConvertUserTag;
 import com.toki.backend.member.dto.OtherUserDTO;
 import com.toki.backend.member.dto.UpdateUserRequestDTO;
 import com.toki.backend.member.dto.UserDTO;
@@ -17,7 +18,7 @@ import java.security.Principal;
 @RequestMapping("/api/v1/users")
 @RequiredArgsConstructor
 public class UserController {
-
+//2월15일 수정 : userTag를 String타입으로 고치고, converUserTag메서드를 이용하도록 수정하였습니다.(Util)
 
 //    2024,02,08 유저정보조회 수정하였음 -> 다른 사람 정보를 조회시, 민감정보는 제외하고 DTO에 담는다.
     private final UserService userService;
@@ -41,10 +42,10 @@ public class UserController {
             UserDTO result;
             if ("simple".equals(infoType)) {
                 // 간단한 정보 조회 요청일 경우
-                result = userService.getUserSimpleInfo(Integer.parseInt(currentUserTag));
+                result = userService.getUserSimpleInfo(currentUserTag);
             } else {
                 // 상세 정보 조회 요청일 경우
-                result = userService.getUserDetailInfo(Integer.parseInt(currentUserTag));
+                result = userService.getUserDetailInfo(currentUserTag);
             }
 
             return ResponseEntity.ok(CommonResponseDto.<UserDTO>builder()
@@ -81,10 +82,11 @@ public class UserController {
 //     return 조회된 사용자 정보
 
     @GetMapping("/others/{userTag}")
-    public ResponseEntity<CommonResponseDto<OtherUserDTO>> getOtherUserInfo(@PathVariable int userTag) {
+    public ResponseEntity<CommonResponseDto<OtherUserDTO>> getOtherUserInfo(@PathVariable String userTag) {
         //@PathVariable: URL 경로에 있는 변수 값을 메소드의 매개변수로 받아올 때 사용
+        // int타입에서 String타입으로 수정하였습니다.
         try {
-            OtherUserDTO result = userService.getOtherUserInfo(userTag);
+            OtherUserDTO result = userService.getOtherUserInfo(ConvertUserTag.convertUserTag(userTag)); //수정한 부분
             return ResponseEntity.ok(CommonResponseDto.<OtherUserDTO>builder()
                     .resultCode(200)
                     .resultMessage("다른 사용자 정보를 조회합니다.")
@@ -116,11 +118,12 @@ public class UserController {
 //     return 수정된 유저 정보
 //
     @PutMapping("/{userTag}")
-    public ResponseEntity<CommonResponseDto<UserDTO>> updateUser(@PathVariable int userTag, @RequestBody UpdateUserRequestDTO request) {
+    public ResponseEntity<CommonResponseDto<UserDTO>> updateUser(@PathVariable String userTag, @RequestBody UpdateUserRequestDTO request) {
+        // int타입에서 String타입으로 수정하였습니다.
         //@PathVariable: URL 경로에 있는 변수 값을 메소드의 매개변수로 받아올 때 사용
         //@RequestBody: HTTP 요청의 본문에 있는 데이터를 메소드의 매개변수로 받아올 때 사용.
         try {
-            UserDTO result = userService.updateUser(userTag, request);
+            UserDTO result = userService.updateUser(ConvertUserTag.convertUserTag(userTag), request);//수정한 부분
             return ResponseEntity.ok(CommonResponseDto.<UserDTO>builder()
                     .resultCode(200)
                     .resultMessage("유저 정보를 수정합니다.")
