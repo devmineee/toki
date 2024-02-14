@@ -63,11 +63,14 @@ public class User {
 	String selfInfo; //자기소개를 의미합니다.
 
 
-
+	/*
+	잘못된 외래키 관계가 정의되어 있습니다.
+	user 엔티티의 pk는 userPk이기 때문에
+	 */
 	//User와 Badge를 연결하기 위함.
 	@ManyToMany(fetch = FetchType.LAZY) //@ManyToMany: 다대다 관계를 정의하는 어노테이션
-	@JoinTable(name = "user_badges", //@JoinTable: 연결 테이블을 지정 //user_badges : 연결테이블의 이름(다대다)
-			joinColumns = @JoinColumn(name = "user_tag"),// 현재 엔티티의 외래 키 컬럼명 지정
+	@JoinTable(name = "member_badges", //@JoinTable: 연결 테이블을 지정 //user_badges : 연결테이블의 이름(다대다)
+			joinColumns = @JoinColumn(name = "user_pk"),// 현재 엔티티의 외래 키 컬럼명 지정
 			inverseJoinColumns = @JoinColumn(name = "idx"))// 대상 엔티티의 외래 키 컬럼명 지정
 	//유저 테이블의 유저태그를 가져와서 배지테이블의 배지 인덱스와 연결
 	private List<Badge> badge = new ArrayList<>(); //배지들을 반환한다.
