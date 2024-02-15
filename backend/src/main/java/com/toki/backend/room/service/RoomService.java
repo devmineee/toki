@@ -135,7 +135,7 @@ public class RoomService {
     public CreateRoomResponseDto saveRoom(CreateRoomRequestDto createRoomRequestDto, String hostUserPk) {
 
         Room room = Room.builder()
-                .parentRoomPk(roomRepository.findById(createRoomRequestDto.getParentRoomId()).orElse(null))
+                .parentRoomPk(roomRepository.findByParentRoomPk(createRoomRequestDto.getParentRoomId()).orElse(null))
                 .title(createRoomRequestDto.getRoomName())
                 .category(categoryRepository.findById(createRoomRequestDto.getCategoryPk()).get())
                 .isPrivate(createRoomRequestDto.getIsPrivate())

@@ -10,9 +10,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface RoomRepository extends JpaRepository<Room, String> {
-
+    Optional<Room> findByParentRoomPk(String parentRoomPk);
     Page<Room> findAllByCategory(PageRequest pageRequest, Category category);
 
 }

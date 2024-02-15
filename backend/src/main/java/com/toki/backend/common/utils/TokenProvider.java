@@ -48,7 +48,7 @@ public class TokenProvider {
     @Value("${jwt-config.secret}")
     private String secretKey;
     public static final String AUTHORIZATION_HEADER = "Authorization";
-    public static String jwtType="bearer ";
+    public static String jwtType="Bearer ";
     @Value("${JWT-TIME-ZONE:Asia/Seoul}")
     public String TIME_ZONE;
 
