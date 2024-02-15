@@ -28,9 +28,6 @@ public class Room {
     @Column(name="room_pk")
     private String roomPk;
 
-    @Column(name="parent_room_pk")
-    private String parentRoomPk;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_room_pk",referencedColumnName = "room_pk")
     private Room parent;
