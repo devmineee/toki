@@ -134,7 +134,7 @@ public class RoomService {
 //    @Transactional
     public CreateRoomResponseDto saveRoom(CreateRoomRequestDto createRoomRequestDto, String hostUserPk) {
         Room room=null;
-        if(createRoomRequestDto.getParentRoomId().isEmpty()){
+        if(createRoomRequestDto.getParentRoomId().isBlank()){
             room = Room.builder()
                     .title(createRoomRequestDto.getRoomName())
                     .category(categoryRepository.findById(createRoomRequestDto.getCategoryPk()).orElse(Category.builder().categoryPk(1).build()))
@@ -142,7 +142,7 @@ public class RoomService {
                     .password(createRoomRequestDto.getRoomPassword())
                     .build();
         }
-        if(!createRoomRequestDto.getParentRoomId().isEmpty()){
+        if(!createRoomRequestDto.getParentRoomId().isBlank()){
             Room pRoom=roomRepository.findById(createRoomRequestDto.getParentRoomId()).get();
             room = Room.builder()
                     .parent(pRoom)
