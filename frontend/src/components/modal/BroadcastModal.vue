@@ -70,7 +70,18 @@ const cllick = () => {
           }
         })
         roomCreate(
-            roomData.value,
+            {
+              roomName: roomName.value,
+              categoryPk: categoryIndex.value,
+              tags: tags.value,
+              isPrivate: isPrivate.value,
+              roomPassword: roomPassword.value,
+              parentRoomId: null,
+              roomOption: {
+                ageLimit: ageLimit.value,
+                genderCatch: genderCatch.value
+              }
+            },
             (success) => {
                 console.log(success)
             },
