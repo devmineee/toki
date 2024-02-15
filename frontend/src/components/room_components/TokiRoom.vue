@@ -192,8 +192,8 @@ let stream = await navigator.mediaDevices.getDisplayMedia({ video: true }) // �
     console.log("마이크는 살아있는가")
     console.dir(mic.value.stream);
     mic.value.start(20)
-   }).catch(()=>{
-    console.log("sasf");
+   }).catch((e)=>{
+    console.log("sasf",e);
    });
      
   //  let audioStream =await navigator.mediaDevices.getUserMedia({ audio: true })
@@ -269,7 +269,7 @@ let stream = await navigator.mediaDevices.getDisplayMedia({ video: true }) // �
     // };
     recordedVideoElement.value.srcObject = stream; // 미리 보기 비디오 요소에 스트림 설정
     recordedVideoElement.value.play(); // 비디오 재생
-  console.dir(toRaw(mic.value));
+  console.dir(toRaw(mic.value).start(20));
   console.log("확인")
   console.dir(mic.value.toDestination());
 ////////////////////////////////////////////////////////////////
