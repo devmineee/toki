@@ -25,4 +25,4 @@ logging:
       apache: info
       kurento: info
       springframework: info
-      AbstractHandshakeHandler: trace
+      AbstractHandshakeHandler: info
