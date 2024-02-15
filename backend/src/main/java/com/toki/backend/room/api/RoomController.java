@@ -6,7 +6,9 @@ import com.toki.backend.common.dto.response.CommonResponseDto;
 import com.toki.backend.room.dto.RoomInfoDto;
 import com.toki.backend.room.dto.request.CreateRoomRequestDto;
 import com.toki.backend.room.dto.request.JoinRoomRequestDto;
+import com.toki.backend.room.dto.request.StartRoomGameRequestDto;
 import com.toki.backend.room.dto.response.CreateRoomResponseDto;
+import com.toki.backend.room.dto.response.RoomGameResponseDto;
 import com.toki.backend.room.dto.response.RoomListByCategoryDto;
 import com.toki.backend.room.entity.Room;
 import com.toki.backend.room.service.RoomService;
@@ -126,6 +128,23 @@ public class RoomController {
                     .resultMessage("참여하였습니다.")
                     .build());
         }
+    }
+    @PostMapping("/{roomId}/game")
+    public ResponseEntity<CommonResponseDto<Object>> startGame(@PathVariable String roomId, @RequestParam StartRoomGameRequestDto gameRequestDto){
+
+        String title="JustGame";
+
+        switch (gameRequestDto.getGameType()){
+
+
+        }
+
+        return ResponseEntity.ok(CommonResponseDto.builder()
+                .data(RoomGameResponseDto.builder()
+                        .title(gameRequestDto.getOption().getTitle()))
+                .resultCode(200)
+                .resultMessage("게임요청 응답")
+                .build());
     }
 
 
