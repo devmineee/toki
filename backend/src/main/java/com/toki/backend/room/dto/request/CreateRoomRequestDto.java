@@ -22,6 +22,7 @@ public class CreateRoomRequestDto {
     RoomOption roomOption;
     @Getter
     @Builder
+    @ToString
     public static class RoomOption{
         String ageLimit;
 

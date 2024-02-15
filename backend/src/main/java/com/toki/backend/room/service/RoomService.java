@@ -144,7 +144,7 @@ public class RoomService {
 
         roomRepository.save(room);
 
-        rooms.put(room.getRoomPk(),tokiRoomService.createTokiRoom(room.getRoomPk()));
+//        rooms.put(room.getRoomPk(),tokiRoomService.createTokiRoom(room.getRoomPk()));
 
         RoomMember roomMember = RoomMember.builder()
                         .roomPk(room.getRoomPk())

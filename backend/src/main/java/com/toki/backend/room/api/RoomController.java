@@ -70,7 +70,7 @@ public class RoomController {
     @PostMapping
     public ResponseEntity<?> createRoom(@RequestBody CreateRoomRequestDto createRoomRequestDto,
                                         @AuthenticationPrincipal CustomOAuth2User userPrincipal) {
-
+        log.debug("요청 도달! {}",createRoomRequestDto.toString());
         CreateRoomResponseDto room = roomService.saveRoom(createRoomRequestDto, userPrincipal.getName());
 
         return ResponseEntity.ok(CommonResponseDto.builder()
