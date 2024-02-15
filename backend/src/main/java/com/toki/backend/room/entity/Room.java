@@ -32,7 +32,7 @@ public class Room {
     private String parentRoomPk;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "parent_room_pk", referencedColumnName = "room_pk", insertable = false, updatable = false)
+    @JoinColumn(name = "parent_room_pk",referencedColumnName = "room_pk")
     private Room parent;
 
     @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
