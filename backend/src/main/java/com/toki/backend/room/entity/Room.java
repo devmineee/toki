@@ -27,8 +27,15 @@ public class Room {
     @UuidGenerator(style = UuidGenerator.Style.TIME)
     private String roomPk;
 
-    @ManyToOne
-    private Room parentRoomPk;
+    @Column(name="parent_room_pk")
+    private String parentRoomPk;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_room_pk", referencedColumnName = "room_pk", insertable = false, updatable = false)
+    private Room parent;
+
+    @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
+    private List<Room> children = new ArrayList<>();
 
     @Column(nullable = false)
     private String title;
