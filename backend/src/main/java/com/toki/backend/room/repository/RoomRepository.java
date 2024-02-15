@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface RoomRepository extends JpaRepository<Room, String> {
-    Optional<Room> findByParentRoomPk(Room parentRoomPk);
+    Optional<Room> findByParentRoomPk(String parentRoomPk);
     Page<Room> findAllByCategory(PageRequest pageRequest, Category category);
 
 }
