@@ -274,13 +274,13 @@ mute : false
     recordedVideoElement.value.play(); // 비디오 재생
   console.dir(toRaw(mic.value).start(20));
   console.log("확인")
-  console.dir(mic.value.toDestination());
+  console.dir(mic.value);
 ////////////////////////////////////////////////////////////////
 
         const options = {
             localVideo: video,
             videoStream: stream, // 새로운 비디오 스트림을 전달합니다.
-            audioStream: mic.value.toDestination(),
+            audioStream: mic.value.stream,
             onicecandidate: participant.onicecandidate.bind(participant)
         };
 
