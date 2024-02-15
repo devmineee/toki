@@ -57,7 +57,18 @@ const roomData = computed(() => ({
 }))
 
 const cllick = () => {
-        sessionStorage.setItem('roomData', JSON.stringify(roomData.value))
+        sessionStorage.setItem('roomData', {
+          roomName: roomName.value,
+          categoryPk: categoryIndex.value,
+          tags: tags.value,
+          isPrivate: isPrivate.value,
+          roomPassword: roomPassword.value,
+          parentRoomId: null,
+          roomOption: {
+            ageLimit: ageLimit.value,
+            genderCatch: genderCatch.value
+          }
+        })
         roomCreate(
             roomData.value,
             (success) => {
