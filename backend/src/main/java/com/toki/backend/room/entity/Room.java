@@ -25,6 +25,7 @@ public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @UuidGenerator(style = UuidGenerator.Style.TIME)
+    @Column(name="room_pk")
     private String roomPk;
 
     @Column(name="parent_room_pk")
