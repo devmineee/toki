@@ -134,7 +134,7 @@ public class RoomService {
 //    @Transactional
     public CreateRoomResponseDto saveRoom(CreateRoomRequestDto createRoomRequestDto, String hostUserPk) {
         Room room=null;
-        if(createRoomRequestDto.getParentRoomId()==null||createRoomRequestDto.getParentRoomId().isBlank()){
+        if(createRoomRequestDto.getParentRoomId()==null){
             room = Room.builder()
                     .title(createRoomRequestDto.getRoomName())
                     .category(categoryRepository.findById(createRoomRequestDto.getCategoryPk()).orElse(Category.builder().categoryPk(1).build()))
