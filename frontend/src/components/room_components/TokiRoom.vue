@@ -388,7 +388,7 @@ function handleResize() {
 onMounted(async() => {
   window.addEventListener('resize', handleResize)
   start()
-  
+  await Tone.start();
 })
 
 onUnmounted(() => {
