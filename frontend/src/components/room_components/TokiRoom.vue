@@ -191,13 +191,8 @@ mute : false
 })
   
   // 마이크 입력을 활성화합니다.
-  mic.value.open().then(() => {
-    console.log("마이크는 살아있는가")
-    console.dir(mic.value.stream);
-    
-   }).catch((e)=>{
-    console.log("sasf",e);
-   });
+  await mic.value.open(30)
+  
      
   //  let audioStream =await navigator.mediaDevices.getUserMedia({ audio: true })
   //       // 오디오 스트림을 얻었습니다. 이제 이를 사용할 수 있습니다.
