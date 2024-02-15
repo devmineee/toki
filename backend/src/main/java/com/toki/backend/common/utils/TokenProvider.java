@@ -157,10 +157,10 @@ public class TokenProvider {
 
     public boolean validateAccessToken(String token) {
         try {
-            log.debug("토큰 찍기 {}",token);
+            log.info("토큰 찍기 {}",token);
             LocalDateTime now = LocalDateTime.now(ZoneId.of(TIME_ZONE));
             Claims claims = parseClaims(token);
-            log.debug("클레임 찍기 {}", claims.toString());
+            log.info("클레임 찍기 {}", claims.toString());
             return claims.getExpiration().before(Date.from(now.plusSeconds(accessTokenExipredTime).atZone(ZoneId.of(TIME_ZONE)).toInstant()));
         } catch (io.jsonwebtoken.security.SecurityException | MalformedJwtException e) {
             log.error("오류 내용 {} : aaa {}",e.getMessage(),e.toString());
@@ -182,6 +182,7 @@ public class TokenProvider {
 
     public boolean validateRefreshToken(String token) {
         try {
+            log.info("토큰 찍기 {}",token);
             LocalDateTime now = LocalDateTime.now(ZoneId.of(TIME_ZONE));
             Claims claims = parseClaims(token);
             return claims.getExpiration().before(Date.from(now.plusSeconds(refreshTokenExpiredTime).atZone(ZoneId.of(TIME_ZONE)).toInstant()));
