@@ -161,7 +161,7 @@ public class TokenProvider {
             Claims claims = parseClaims(token);
             return claims.getExpiration().before(Date.from(now.plusSeconds(accessTokenExipredTime).atZone(ZoneId.of(TIME_ZONE)).toInstant()));
         } catch (io.jsonwebtoken.security.SecurityException | MalformedJwtException e) {
-
+            log.error("오류 내용 {} : aaa {}",e.getMessage(),e.toString());
             log.info("잘못된 JWT 서명입니다.");
         } catch (ExpiredJwtException e) {
 
@@ -184,7 +184,7 @@ public class TokenProvider {
             Claims claims = parseClaims(token);
             return claims.getExpiration().before(Date.from(now.plusSeconds(refreshTokenExpiredTime).atZone(ZoneId.of(TIME_ZONE)).toInstant()));
         } catch (io.jsonwebtoken.security.SecurityException | MalformedJwtException e) {
-
+            log.error("오류 내용 {} : aaa {}",e.getMessage(),e.toString());
             log.info("잘못된 JWT 서명입니다.");
         } catch (ExpiredJwtException e) {
 
