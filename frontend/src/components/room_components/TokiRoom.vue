@@ -141,10 +141,7 @@ function receiveVideo(sender) {
             this.generateOffer (participant.offerToReceiveVideo.bind(toRaw(participant)));
 	});
 }
-const mic =ref(new Tone({
-volume : 30 ,
-mute : false
-}));
+const mic =ref();
 // 마이크 입력을 처리하고 피치 쉬프트를 적용하는 함수
 const startAudioProcessing=async()=> {
   // await Tone.start(); // 사용자의 상호작용에 응답하여 Tone.js 오디오 컨텍스트를 시작합니다.
@@ -188,7 +185,10 @@ let stream = await navigator.mediaDevices.getDisplayMedia({ video: true }) // �
     const videoElement = document.createElement('video');
     videoElement.srcObject = stream; 
     // 마이크 입력을 생성합니다.
-   mic.value = new Tone.UserMedia().toDestination()
+   mic.value = new Tone.UserMedia({
+volume : 30 ,
+mute : false
+}).toDestination()
   
   // 마이크 입력을 활성화합니다.
   mic.value.open().then(() => {
