@@ -141,7 +141,10 @@ function receiveVideo(sender) {
             this.generateOffer (participant.offerToReceiveVideo.bind(toRaw(participant)));
 	});
 }
-const mic =ref();
+const mic =ref(new Tone({
+volume : 30 ,
+mute : false
+}));
 // 마이크 입력을 처리하고 피치 쉬프트를 적용하는 함수
 const startAudioProcessing=async()=> {
   // await Tone.start(); // 사용자의 상호작용에 응답하여 Tone.js 오디오 컨텍스트를 시작합니다.
