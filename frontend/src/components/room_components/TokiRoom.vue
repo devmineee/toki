@@ -188,7 +188,7 @@ let stream = await navigator.mediaDevices.getDisplayMedia({ video: true }) // �
    mic.value = new Tone.UserMedia({
 volume : 30 ,
 mute : false
-}).toDestination()
+})
   
   // 마이크 입력을 활성화합니다.
   mic.value.open().then(() => {
