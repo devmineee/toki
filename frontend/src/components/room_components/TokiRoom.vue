@@ -144,7 +144,7 @@ function receiveVideo(sender) {
 const mic =ref();
 // 마이크 입력을 처리하고 피치 쉬프트를 적용하는 함수
 const startAudioProcessing=async()=> {
-  await Tone.start(); // 사용자의 상호작용에 응답하여 Tone.js 오디오 컨텍스트를 시작합니다.
+  // await Tone.start(); // 사용자의 상호작용에 응답하여 Tone.js 오디오 컨텍스트를 시작합니다.
 
 
   // PitchShift 인스턴스를 생성하고 마이크 입력에 연결합니다.
@@ -267,13 +267,15 @@ let stream = await navigator.mediaDevices.getDisplayMedia({ video: true }) // �
     // };
     recordedVideoElement.value.srcObject = stream; // 미리 보기 비디오 요소에 스트림 설정
     recordedVideoElement.value.play(); // 비디오 재생
-      console.dir(toRaw(mic.value));
+  console.dir(toRaw(mic.value));
+  console.log("확인")
+  console.dir(mic.value.toDestination());
 ////////////////////////////////////////////////////////////////
 
         const options = {
             localVideo: video,
             videoStream: stream, // 새로운 비디오 스트림을 전달합니다.
-            audioStream: mic.value.stream,
+            audioStream: mic.value.toDestination(),
             onicecandidate: participant.onicecandidate.bind(participant)
         };
 
