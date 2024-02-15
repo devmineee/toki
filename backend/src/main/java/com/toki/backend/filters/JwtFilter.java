@@ -39,7 +39,7 @@ public class JwtFilter extends OncePerRequestFilter {
             return;
         }
         String requestURI =request.getRequestURI();
-
+        log.error("뭐야! {}",jwt);
         Cookie[] rc = request.getCookies();
         log.debug(jwt+" : "+requestURI+  ": " +(StringUtils.hasText(jwt) && tokenProvider.validateAccessToken(jwt)));
         if (StringUtils.hasText(jwt)) {

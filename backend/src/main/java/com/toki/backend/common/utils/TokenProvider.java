@@ -156,8 +156,8 @@ public class TokenProvider {
     }
 
     public boolean validateAccessToken(String token) {
-        try {
             log.info("토큰 찍기 {}",token);
+        try {
             LocalDateTime now = LocalDateTime.now(ZoneId.of(TIME_ZONE));
             Claims claims = parseClaims(token);
             log.info("클레임 찍기 {}", claims.toString());
