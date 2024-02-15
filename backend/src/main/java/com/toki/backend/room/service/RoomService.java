@@ -137,7 +137,7 @@ public class RoomService {
         Room room = Room.builder()
                 .parent(Room.builder().roomPk(createRoomRequestDto.getParentRoomId()).build())
                 .title(createRoomRequestDto.getRoomName())
-                .category(categoryRepository.findById(createRoomRequestDto.getCategoryPk()).get())
+                .category(categoryRepository.findById(createRoomRequestDto.getCategoryPk()).orElse(Category.builder().categoryPk(1).build()))
                 .isPrivate(createRoomRequestDto.getIsPrivate())
                 .password(createRoomRequestDto.getRoomPassword())
                 .build();

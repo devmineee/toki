@@ -1,14 +1,13 @@
 package com.toki.backend.room.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @NoArgsConstructor
 @Getter
-@Setter
+@Builder
+@AllArgsConstructor
 public class Category {
 
     @Id

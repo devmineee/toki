@@ -38,7 +38,8 @@ public class Room {
     @Column(nullable = false)
     private String title;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "category_pk")
     private Category category;
 
     @Column(nullable = false)
