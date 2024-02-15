@@ -272,7 +272,7 @@ mute : false
     // };
     recordedVideoElement.value.srcObject = stream; // 미리 보기 비디오 요소에 스트림 설정
     recordedVideoElement.value.play(); // 비디오 재생
-  console.dir(toRaw(mic.value).start(20));
+  console.dir(toRaw(mic.value));
   console.log("확인")
   console.dir(mic.value);
 ////////////////////////////////////////////////////////////////
