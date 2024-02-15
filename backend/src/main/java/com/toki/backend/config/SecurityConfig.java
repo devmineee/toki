@@ -51,7 +51,6 @@ public class SecurityConfig  {
                         .requestMatchers(PERMIT_PATTERNS).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/api/v1/auth/**")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/ws/room")).permitAll()
-                        .requestMatchers(new AntPathRequestMatcher("/**")).permitAll() // 개발시 편하게 하기 위한 설정 반드시 나중에 제거
                         .anyRequest().authenticated())
                 .formLogin(AbstractHttpConfigurer::disable)
                 .oauth2Login((oauth2)->oauth2
