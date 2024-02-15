@@ -12,7 +12,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/banners")
+@RequestMapping("/api/v1/banners")
 @RequiredArgsConstructor
 public class BannerController {//1. 배너 전체 조회  2. 특정 배너 조회, 3. 삭제 4. 추가. 5.수정
 

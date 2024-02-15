@@ -35,6 +35,7 @@ public class BadgeService {
     // 2) 배지 추가
     public BadgeDTO saveBadge(BadgeDTO badgeDTO) {
         Badge newBadge = Badge.builder()
+//                .idx(badgeDTO.getIdx())
                 .name(badgeDTO.getName())
                 .imageUrl(badgeDTO.getImageUrl())
                 .build();

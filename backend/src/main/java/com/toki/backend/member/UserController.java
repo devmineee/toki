@@ -8,6 +8,7 @@ import com.toki.backend.member.dto.UserDTO;
 import com.toki.backend.member.service.UserService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,6 +18,7 @@ import java.security.Principal;
 @RestController
 @RequestMapping("/api/v1/users")
 @RequiredArgsConstructor
+@Slf4j
 public class UserController {
 //2월15일 수정 : userTag를 String타입으로 고치고, converUserTag메서드를 이용하도록 수정하였습니다.(Util)
 
@@ -33,19 +35,23 @@ public class UserController {
 
     @GetMapping("/{userTag}")
     public ResponseEntity<CommonResponseDto<UserDTO>> getUserInfo(
+            @PathVariable String userTag,
             @RequestParam(name = "info_type", defaultValue = "detail") String infoType,
             Principal principal
     ) {
         try {
-            String currentUserTag = principal.getName();
+            String currentUserTag = userTag;
 
             UserDTO result;
             if ("simple".equals(infoType)) {
                 // 간단한 정보 조회 요청일 경우
-                result = userService.getUserSimpleInfo(currentUserTag);
+
+                result = userService.getUserSimpleInfo(ConvertUserTag.convertUserTag(userTag));
             } else {
                 // 상세 정보 조회 요청일 경우
-                result = userService.getUserDetailInfo(currentUserTag);
+                result = userService.getUserDetailInfo(ConvertUserTag.convertUserTag(userTag));
+
+
             }
 
             return ResponseEntity.ok(CommonResponseDto.<UserDTO>builder()
@@ -62,6 +68,7 @@ public class UserController {
                             .data(null)
                             .build());
         } catch (Exception e) {
+            System.out.println(e.getLocalizedMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     // 서버 에러 발생 시
                     .body(CommonResponseDto.<UserDTO>builder()
@@ -86,7 +93,10 @@ public class UserController {
         //@PathVariable: URL 경로에 있는 변수 값을 메소드의 매개변수로 받아올 때 사용
         // int타입에서 String타입으로 수정하였습니다.
         try {
+
             OtherUserDTO result = userService.getOtherUserInfo(ConvertUserTag.convertUserTag(userTag)); //수정한 부분
+
+
             return ResponseEntity.ok(CommonResponseDto.<OtherUserDTO>builder()
                     .resultCode(200)
                     .resultMessage("다른 사용자 정보를 조회합니다.")
@@ -119,11 +129,13 @@ public class UserController {
 //
     @PutMapping("/{userTag}")
     public ResponseEntity<CommonResponseDto<UserDTO>> updateUser(@PathVariable String userTag, @RequestBody UpdateUserRequestDTO request) {
+
         // int타입에서 String타입으로 수정하였습니다.
         //@PathVariable: URL 경로에 있는 변수 값을 메소드의 매개변수로 받아올 때 사용
         //@RequestBody: HTTP 요청의 본문에 있는 데이터를 메소드의 매개변수로 받아올 때 사용.
         try {
             UserDTO result = userService.updateUser(ConvertUserTag.convertUserTag(userTag), request);//수정한 부분
+
             return ResponseEntity.ok(CommonResponseDto.<UserDTO>builder()
                     .resultCode(200)
                     .resultMessage("유저 정보를 수정합니다.")
