@@ -194,7 +194,7 @@ mute : false
   mic.value.open().then(() => {
     console.log("마이크는 살아있는가")
     console.dir(mic.value.stream);
-    mic.value.start(20)
+    
    }).catch((e)=>{
     console.log("sasf",e);
    });
