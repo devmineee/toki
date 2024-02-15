@@ -185,10 +185,11 @@ let stream = await navigator.mediaDevices.getDisplayMedia({ video: true }) // �
     const videoElement = document.createElement('video');
     videoElement.srcObject = stream; 
     // 마이크 입력을 생성합니다.
-   mic.value = new Tone.UserMedia()
+   mic.value = new Tone.UserMedia().toDestination()
   
   // 마이크 입력을 활성화합니다.
-   mic.value.open().then(()=>{
+  mic.value.open().then(() => {
+    console.log("마이크는 살아있는가")
     console.dir(mic.value.stream);
    }).catch(()=>{
     console.log("sasf");
