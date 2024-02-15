@@ -1,5 +1,7 @@
 package com.toki.backend.room.entity;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
@@ -14,6 +16,7 @@ import java.util.Set;
 @RedisHash(value = "room_hashtag")
 public class RoomTag {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idx;
     @Indexed
     private String roomPk;
