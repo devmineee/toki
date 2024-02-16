@@ -3,7 +3,7 @@ import { localaxios } from "./BaseAxios";
 const local = localaxios();
 
 async function roomCreate(roomData, success, fail) {
-    await local.post('/api/v1/rooms', [...roomData])
+    await local.post('/api/v1/rooms', roomData)
         .then(success)
         .catch(fail);
 }
