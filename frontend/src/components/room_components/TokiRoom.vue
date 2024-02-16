@@ -420,7 +420,7 @@ const colOffset = computed(() => isLagerScreen.value ? 0 : 1)
     <video ref="recordedVideoElement" controls style="max-width: 100%; " width="500" height="300"></video>
     <!-- <canvas ref="previewCanvas" controls style="max-width: 100%;" width="100" height="60"></canvas> -->
   </div>    
-  <v-container id="enter" class="h-100" style="min-width: 600px">
+  <v-container id="enter" class="h-100" style="min-width: 1400px">
     
     <v-row class="h-100">
       <!-- 화면 -->
