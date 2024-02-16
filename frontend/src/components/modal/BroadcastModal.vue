@@ -59,7 +59,7 @@ const roomData = computed(() => ({
 const cllick = () => {
         sessionStorage.setItem('roomData', JSON.stringify(roomData.value))
         roomCreate(
-            roomData,
+            roomData.value,
             (success) => {
                 console.log(success)
             },
