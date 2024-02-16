@@ -42,21 +42,24 @@ const updateCategoryIndex = (newValue) => {
     categoryIndex.value = index >= 0 ? index : null
 }
 
-const roomData = computed(() => ({
-    roomName: roomName.value,
-    categoryPk: categoryIndex.value + 1,
-    tags: tags.value,
-    isPrivate: isPrivate.value,
-    roomPassword: roomPassword.value,
+const roomData = {
+    roomName: '안녕',
+    categoryPk: 2,
+    tags: ['2', '4', '1234a'],
+    isPrivate: false,
+    roomPassword: 'asdf1234',
     parentRoomId: null,
     roomOption: {
-        ageLimit: ageLimit.value,
-        genderCatch: genderCatch.value
+        ageLimit: 4,
+        genderCatch: '여자'
     }
 
-}))
+}
+
+
 
 const cllick = () => {
+        console.log(roomData)
         sessionStorage.setItem('roomData', JSON.stringify(roomData.value))
         roomCreate(
             roomData,
